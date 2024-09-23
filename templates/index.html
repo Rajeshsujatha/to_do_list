@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask To-Do List</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+
+        <!-- Form to add a new task -->
+        <form action="/add" method="POST">
+            <input type="text" name="task" placeholder="Enter a new task" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <!-- List of tasks -->
+        <ul>
+            {% for task in todo_list %}
+            <li>
+                {{ loop.index }}. {{ task }}
+                <a href="/complete/{{ loop.index0 }}" class="complete-btn">✔ Complete</a>
+                <a href="/delete/{{ loop.index0 }}" class="delete-btn">❌ Delete</a>
+            </li>
+            {% else %}
+            <li>No tasks available!</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
